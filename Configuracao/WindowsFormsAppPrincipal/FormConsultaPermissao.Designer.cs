@@ -58,7 +58,7 @@
             this.permissaoDataGridView.RowHeadersWidth = 51;
             this.permissaoDataGridView.RowTemplate.Height = 24;
             this.permissaoDataGridView.Size = new System.Drawing.Size(776, 329);
-            this.permissaoDataGridView.TabIndex = 1;
+            this.permissaoDataGridView.TabIndex = 4;
             // 
             // dataGridViewTextBoxColumn2
             // 
@@ -80,7 +80,7 @@
             this.label2.Location = new System.Drawing.Point(0, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(800, 58);
-            this.label2.TabIndex = 9;
+            this.label2.TabIndex = 0;
             this.label2.Text = "Consultar permissão";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -90,15 +90,15 @@
             this.label1.Location = new System.Drawing.Point(12, 58);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(177, 16);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "Informe o que deseja buscar";
+            this.label1.TabIndex = 1;
+            this.label1.Text = "&Informe o que deseja buscar";
             // 
             // textBoxBuscar
             // 
             this.textBoxBuscar.Location = new System.Drawing.Point(12, 77);
             this.textBoxBuscar.Name = "textBoxBuscar";
             this.textBoxBuscar.Size = new System.Drawing.Size(695, 22);
-            this.textBoxBuscar.TabIndex = 8;
+            this.textBoxBuscar.TabIndex = 2;
             // 
             // buttonCancelar
             // 
@@ -106,8 +106,8 @@
             this.buttonCancelar.Location = new System.Drawing.Point(713, 440);
             this.buttonCancelar.Name = "buttonCancelar";
             this.buttonCancelar.Size = new System.Drawing.Size(75, 28);
-            this.buttonCancelar.TabIndex = 5;
-            this.buttonCancelar.Text = "Cancelar";
+            this.buttonCancelar.TabIndex = 6;
+            this.buttonCancelar.Text = "&Cancelar";
             this.buttonCancelar.UseVisualStyleBackColor = true;
             // 
             // buttonBuscar
@@ -115,8 +115,8 @@
             this.buttonBuscar.Location = new System.Drawing.Point(713, 71);
             this.buttonBuscar.Name = "buttonBuscar";
             this.buttonBuscar.Size = new System.Drawing.Size(75, 28);
-            this.buttonBuscar.TabIndex = 6;
-            this.buttonBuscar.Text = "Buscar";
+            this.buttonBuscar.TabIndex = 3;
+            this.buttonBuscar.Text = "&Buscar";
             this.buttonBuscar.UseVisualStyleBackColor = true;
             this.buttonBuscar.Click += new System.EventHandler(this.buttonBuscar_Click);
             // 
@@ -125,8 +125,8 @@
             this.buttonSelecionar.Location = new System.Drawing.Point(632, 440);
             this.buttonSelecionar.Name = "buttonSelecionar";
             this.buttonSelecionar.Size = new System.Drawing.Size(75, 28);
-            this.buttonSelecionar.TabIndex = 7;
-            this.buttonSelecionar.Text = "Selecionar";
+            this.buttonSelecionar.TabIndex = 5;
+            this.buttonSelecionar.Text = "&Selecionar";
             this.buttonSelecionar.UseVisualStyleBackColor = true;
             this.buttonSelecionar.Click += new System.EventHandler(this.buttonSelecionar_Click);
             // 
@@ -143,12 +143,14 @@
             this.Controls.Add(this.buttonSelecionar);
             this.Controls.Add(this.permissaoDataGridView);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormConsultaPermissao";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "Consultar permissão";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormConsultaPermissao_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.permissaoDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.permissaoBindingSource)).EndInit();
             this.ResumeLayout(false);

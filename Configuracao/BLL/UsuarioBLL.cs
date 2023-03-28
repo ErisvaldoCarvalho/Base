@@ -2,6 +2,7 @@
 using Models;
 using System;
 using System.Collections.Generic;
+using System.Runtime.Remoting.Channels;
 
 namespace BLL
 {
@@ -78,6 +79,15 @@ namespace BLL
         public void RemoverGrupoUsuario(int _idUsuario, int _idGrupoUsuario)
         {
             new UsuarioDAL().RemoverGrupoUsuario(_idUsuario, _idGrupoUsuario);
+        }
+
+        public void Altenticar(string _nomeUsuario, string _senha)
+        {
+            Usuario usuario = new UsuarioDAL().BuscarPorNomeUsuario(_nomeUsuario);
+            if (_senha == usuario.Senha && usuario.Ativo)
+                Constantes.IdUsuarioLogado = usuario.Id;
+            else
+                throw new Exception("Usuario ou senha inválido.");
         }
     }
 }

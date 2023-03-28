@@ -70,7 +70,7 @@
             cPFLabel.Location = new System.Drawing.Point(336, 58);
             cPFLabel.Name = "cPFLabel";
             cPFLabel.Size = new System.Drawing.Size(33, 16);
-            cPFLabel.TabIndex = 2;
+            cPFLabel.TabIndex = 3;
             cPFLabel.Text = "CPF";
             // 
             // emailLabel
@@ -79,7 +79,7 @@
             emailLabel.Location = new System.Drawing.Point(446, 58);
             emailLabel.Name = "emailLabel";
             emailLabel.Size = new System.Drawing.Size(45, 16);
-            emailLabel.TabIndex = 4;
+            emailLabel.TabIndex = 5;
             emailLabel.Text = "E-mail";
             // 
             // nomeUsuarioLabel
@@ -88,7 +88,7 @@
             nomeUsuarioLabel.Location = new System.Drawing.Point(12, 105);
             nomeUsuarioLabel.Name = "nomeUsuarioLabel";
             nomeUsuarioLabel.Size = new System.Drawing.Size(110, 16);
-            nomeUsuarioLabel.TabIndex = 6;
+            nomeUsuarioLabel.TabIndex = 7;
             nomeUsuarioLabel.Text = "Nome de usuário";
             // 
             // senhaLabel
@@ -97,7 +97,7 @@
             senhaLabel.Location = new System.Drawing.Point(231, 105);
             senhaLabel.Name = "senhaLabel";
             senhaLabel.Size = new System.Drawing.Size(46, 16);
-            senhaLabel.TabIndex = 8;
+            senhaLabel.TabIndex = 9;
             senhaLabel.Text = "Senha";
             // 
             // label1
@@ -106,7 +106,7 @@
             label1.Location = new System.Drawing.Point(336, 102);
             label1.Name = "label1";
             label1.Size = new System.Drawing.Size(104, 16);
-            label1.TabIndex = 8;
+            label1.TabIndex = 11;
             label1.Text = "Confirmar senha";
             // 
             // usuarioBindingSource
@@ -127,7 +127,7 @@
             this.cPFTextBox.Location = new System.Drawing.Point(339, 77);
             this.cPFTextBox.Name = "cPFTextBox";
             this.cPFTextBox.Size = new System.Drawing.Size(100, 22);
-            this.cPFTextBox.TabIndex = 3;
+            this.cPFTextBox.TabIndex = 4;
             // 
             // emailTextBox
             // 
@@ -135,7 +135,7 @@
             this.emailTextBox.Location = new System.Drawing.Point(449, 77);
             this.emailTextBox.Name = "emailTextBox";
             this.emailTextBox.Size = new System.Drawing.Size(283, 22);
-            this.emailTextBox.TabIndex = 5;
+            this.emailTextBox.TabIndex = 6;
             // 
             // nomeUsuarioTextBox
             // 
@@ -143,7 +143,7 @@
             this.nomeUsuarioTextBox.Location = new System.Drawing.Point(15, 124);
             this.nomeUsuarioTextBox.Name = "nomeUsuarioTextBox";
             this.nomeUsuarioTextBox.Size = new System.Drawing.Size(213, 22);
-            this.nomeUsuarioTextBox.TabIndex = 7;
+            this.nomeUsuarioTextBox.TabIndex = 8;
             // 
             // senhaTextBox
             // 
@@ -151,7 +151,7 @@
             this.senhaTextBox.Location = new System.Drawing.Point(234, 124);
             this.senhaTextBox.Name = "senhaTextBox";
             this.senhaTextBox.Size = new System.Drawing.Size(100, 22);
-            this.senhaTextBox.TabIndex = 9;
+            this.senhaTextBox.TabIndex = 10;
             // 
             // ativoCheckBox
             // 
@@ -160,7 +160,7 @@
             this.ativoCheckBox.Location = new System.Drawing.Point(449, 126);
             this.ativoCheckBox.Name = "ativoCheckBox";
             this.ativoCheckBox.Size = new System.Drawing.Size(59, 20);
-            this.ativoCheckBox.TabIndex = 11;
+            this.ativoCheckBox.TabIndex = 13;
             this.ativoCheckBox.Text = "Ativo";
             this.ativoCheckBox.UseVisualStyleBackColor = true;
             // 
@@ -178,7 +178,7 @@
             this.label2.Location = new System.Drawing.Point(0, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(744, 42);
-            this.label2.TabIndex = 13;
+            this.label2.TabIndex = 0;
             this.label2.Text = "Cadastro de usuários";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -188,7 +188,7 @@
             this.buttonSalvar.Name = "buttonSalvar";
             this.buttonSalvar.Size = new System.Drawing.Size(75, 31);
             this.buttonSalvar.TabIndex = 14;
-            this.buttonSalvar.Text = "Salvar";
+            this.buttonSalvar.Text = "&Salvar";
             this.buttonSalvar.UseVisualStyleBackColor = true;
             this.buttonSalvar.Click += new System.EventHandler(this.buttonSalvar_Click);
             // 
@@ -197,8 +197,8 @@
             this.buttonCancelar.Location = new System.Drawing.Point(657, 277);
             this.buttonCancelar.Name = "buttonCancelar";
             this.buttonCancelar.Size = new System.Drawing.Size(75, 31);
-            this.buttonCancelar.TabIndex = 14;
-            this.buttonCancelar.Text = "Cancelar";
+            this.buttonCancelar.TabIndex = 15;
+            this.buttonCancelar.Text = "&Cancelar";
             this.buttonCancelar.UseVisualStyleBackColor = true;
             this.buttonCancelar.Click += new System.EventHandler(this.buttonCancelar_Click);
             // 
@@ -233,6 +233,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro de usuários";
             this.Load += new System.EventHandler(this.FormCadastroUsuario_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormCadastroUsuario_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.usuarioBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
