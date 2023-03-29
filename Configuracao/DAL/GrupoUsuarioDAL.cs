@@ -175,9 +175,9 @@ namespace DAL
 
             using (SqlConnection cn = new SqlConnection(Conexao.StringDeConexao))
             {
-                using (SqlCommand cmd = new SqlCommand("DELETE FROM GrupoUsuario WHERE Id = @Id", cn))
+                using (SqlCommand cmd = new SqlCommand("DELETE FROM GrupoUsuarios WHERE Id = @Id", cn))
                 {
-                    cmd.Parameters.Add("@Id", SqlDbType.Int).Value = _idGrupoUsuario;
+                    cmd.Parameters.AddWithValue("@Id", _idGrupoUsuario);
 
                     if (transaction == null)
                     {
@@ -211,7 +211,7 @@ namespace DAL
             {
                 using (SqlCommand cmd = new SqlCommand("DELETE FROM PermissaoGrupoUsuario WHERE IdGrupoUsuario = @IdGrupoUsuario", cn))
                 {
-                    cmd.Parameters.Add("@IdGrupoUsuario", SqlDbType.Int).Value = _idGrupoUsuario;
+                    cmd.Parameters.AddWithValue("@IdGrupoUsuario", _idGrupoUsuario);
 
                     if (transaction == null)
                     {
@@ -236,7 +236,6 @@ namespace DAL
                 }
             }
         }
-
 
         //public void Excluir(int _id)
         //{
