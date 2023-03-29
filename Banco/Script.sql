@@ -1,7 +1,13 @@
 USE master
 GO
 
---CREATE DATABASE Configuracao
+ALTER DATABASE Configuracao SET  SINGLE_USER WITH ROLLBACK IMMEDIATE
+GO
+
+DROP DATABASE Configuracao
+GO
+
+CREATE DATABASE Configuracao
 GO
 
 USE Configuracao
@@ -19,6 +25,7 @@ CREATE TABLE Usuario
 	Senha VARCHAR(50)
 )
 GO
+
 IF OBJECT_ID('GrupoUsuario', 'U') IS NULL
 CREATE TABLE GrupoUsuario
 (
@@ -92,21 +99,50 @@ GO
 
 IF COL_LENGTH('Usuario', 'DataCadastro') IS NULL
 ALTER TABLE Usuario ADD DataCadastro DATETIME DEFAULT GETDATE()
+
 GO
 
-DELETE FROM Permissao
+IF(NOT EXISTS(SELECT 1 FROM Permissao WHERE Id = 1))INSERT INTO Permissao(Id, Descricao)VALUES(1,'Visualizar usuário')
+IF(NOT EXISTS(SELECT 1 FROM Permissao WHERE Id = 2))INSERT INTO Permissao(Id, Descricao)VALUES(2,'Cadastrar usuário')
+IF(NOT EXISTS(SELECT 1 FROM Permissao WHERE Id = 3))INSERT INTO Permissao(Id, Descricao)VALUES(3,'Alterar usuário')
+IF(NOT EXISTS(SELECT 1 FROM Permissao WHERE Id = 4))INSERT INTO Permissao(Id, Descricao)VALUES(4,'Excluir usuário')
+IF(NOT EXISTS(SELECT 1 FROM Permissao WHERE Id = 5))INSERT INTO Permissao(Id, Descricao)VALUES(5,'Visualizar grupo de usuário')
+IF(NOT EXISTS(SELECT 1 FROM Permissao WHERE Id = 6))INSERT INTO Permissao(Id, Descricao)VALUES(6,'Cadastrar grupo de usuário')
+IF(NOT EXISTS(SELECT 1 FROM Permissao WHERE Id = 7))INSERT INTO Permissao(Id, Descricao)VALUES(7,'Alterar grupo de usuário')
+IF(NOT EXISTS(SELECT 1 FROM Permissao WHERE Id = 8))INSERT INTO Permissao(Id, Descricao)VALUES(8,'Excluir grupo de usuário')
+IF(NOT EXISTS(SELECT 1 FROM Permissao WHERE Id = 9))INSERT INTO Permissao(Id, Descricao)VALUES(9,'Adicionar permissão a um grupo de usuário')
+IF(NOT EXISTS(SELECT 1 FROM Permissao WHERE Id = 10))INSERT INTO Permissao(Id, Descricao)VALUES(10,'Adicionar grupo de usuário a um usuário')
 GO
 
-INSERT INTO Permissao(Id, Descricao)VALUES(1,'Visualizar usuário')
-INSERT INTO Permissao(Id, Descricao)VALUES(2,'Cadastrar usuário')
-INSERT INTO Permissao(Id, Descricao)VALUES(3,'Alterar usuário')
-INSERT INTO Permissao(Id, Descricao)VALUES(4,'Excluir usuário')
-INSERT INTO Permissao(Id, Descricao)VALUES(5,'Visualizar grupo de usuário')
-INSERT INTO Permissao(Id, Descricao)VALUES(6,'Cadastrar grupo de usuário')
-INSERT INTO Permissao(Id, Descricao)VALUES(7,'Alterar grupo de usuário')
-INSERT INTO Permissao(Id, Descricao)VALUES(8,'Excluir grupo de usuário')
-INSERT INTO Permissao(Id, Descricao)VALUES(9,'Adicionar permissão a um grupo de usuário')
-INSERT INTO Permissao(Id, Descricao)VALUES(10,'Adicionar grupo de usuário a um usuário')
+IF(NOT EXISTS(SELECT 1 FROM Usuario WHERE NomeUsuario = 'Erisvaldo'))INSERT INTO Usuario(Nome, NomeUsuario, Senha, Ativo)VALUES('Erisvaldo Carvalho', 'Erisvaldo', '123456', 1)
+IF(NOT EXISTS(SELECT 1 FROM Usuario WHERE NomeUsuario = 'Geno'))INSERT INTO Usuario(Nome, NomeUsuario, Senha, Ativo)VALUES('Genoveva', 'Geno', '984521', 1)
+IF(NOT EXISTS(SELECT 1 FROM Usuario WHERE NomeUsuario = 'Dag'))INSERT INTO Usuario(Nome, NomeUsuario, Senha, Ativo)VALUES('Dagorlina', 'Dag', '123456', 1)
+GO
+
+INSERT INTO GrupoUsuario(NomeGrupo)VALUES('Gerente')
+INSERT INTO GrupoUsuario(NomeGrupo)VALUES('Vendedor')
+INSERT INTO GrupoUsuario(NomeGrupo)VALUES('Fiscal de caixa')
+INSERT INTO GrupoUsuario(NomeGrupo)VALUES('Estoquista')
+INSERT INTO GrupoUsuario(NomeGrupo)VALUES('Operador de caixa')
+
+GO
+INSERT INTO UsuarioGrupoUsuario VALUES(2,1)
+INSERT INTO UsuarioGrupoUsuario VALUES(1,2)
+GO
+
+INSERT INTO PermissaoGrupoUsuario(IdGrupoUsuario, IdPermissao) VALUES(3,1)
+INSERT INTO PermissaoGrupoUsuario(IdGrupoUsuario, IdPermissao) VALUES(3,2)
+INSERT INTO PermissaoGrupoUsuario(IdGrupoUsuario, IdPermissao) VALUES(3,5)
+INSERT INTO PermissaoGrupoUsuario(IdGrupoUsuario, IdPermissao) VALUES(4,2)
+INSERT INTO PermissaoGrupoUsuario(IdGrupoUsuario, IdPermissao) VALUES(4,1)
+INSERT INTO PermissaoGrupoUsuario(IdGrupoUsuario, IdPermissao) VALUES(4,5)
+GO
+
+INSERT INTO PermissaoGrupoUsuario (IdGrupoUsuario, IdPermissao)(SELECT 1, Id FROM Permissao)
+GO
+INSERT INTO PermissaoGrupoUsuario (IdGrupoUsuario, IdPermissao)VALUES(2, 1)
+INSERT INTO PermissaoGrupoUsuario (IdGrupoUsuario, IdPermissao)VALUES(2, 2)
+INSERT INTO PermissaoGrupoUsuario (IdGrupoUsuario, IdPermissao)VALUES(2, 3)
 GO
 
 SELECT 
@@ -122,3 +158,5 @@ INNER JOIN
 ORDER BY 
     TableName, ColumnName;
 GO
+SELECT*FROM GrupoUsuario with(nolock)
+SELECT*FROM PermissaoGrupoUsuario with(nolock)

@@ -9,7 +9,6 @@ namespace WindowsFormsAppPrincipal
         {
             InitializeComponent();
         }
-
         private void usuáriosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -24,7 +23,6 @@ namespace WindowsFormsAppPrincipal
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void FormPrincipal_Load(object sender, EventArgs e)
         {
             try
@@ -41,7 +39,6 @@ namespace WindowsFormsAppPrincipal
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void gruposDeUsuáriosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -56,7 +53,6 @@ namespace WindowsFormsAppPrincipal
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void FormPrincipal_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)

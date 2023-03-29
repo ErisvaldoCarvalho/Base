@@ -60,27 +60,25 @@ namespace BLL
                 throw new Exception("A senha e a confirmação da senha devem ser iguais.");
 
             if (_usuario.Senha.Length <= 3)
-                throw new Exception("A senha deve ter mais de 3 caracteres.") { Data = { { "Id", 123} } };
+                throw new Exception("A senha deve ter mais de 3 caracteres.") { Data = { { "Id", 123 } } };
 
             if (_usuario.Nome.Length <= 2)
                 throw new Exception("A nome deve ter mais de 2 caracteres.");
         }
         public void ValidarPermissao(int _idPermissao)
         {
-            //if (!new UsuarioDAL().ValidarPermissao(Constantes.IdUsuarioLogado, _idPermissao))
-            //    throw new Exception("Você não tem permissão de realizar essa operação. Procure o administrador do sistema.");
+            if (!new UsuarioDAL().ValidarPermissao(Constantes.IdUsuarioLogado, _idPermissao))
+                throw new Exception("Você não tem permissão de realizar essa operação. Procure o administrador do sistema.");
         }
         public void AdicionarGrupoUsuario(int _idUsuario, int _idGrupoUsuario)
         {
             if (!new UsuarioDAL().UsuarioPertenceAoGrupo(_idUsuario, _idGrupoUsuario))
                 new UsuarioDAL().AdicionarGrupoUsuario(_idUsuario, _idGrupoUsuario);
         }
-
         public void RemoverGrupoUsuario(int _idUsuario, int _idGrupoUsuario)
         {
             new UsuarioDAL().RemoverGrupoUsuario(_idUsuario, _idGrupoUsuario);
         }
-
         public void Altenticar(string _nomeUsuario, string _senha)
         {
             Usuario usuario = new UsuarioDAL().BuscarPorNomeUsuario(_nomeUsuario);
