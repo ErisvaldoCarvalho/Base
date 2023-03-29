@@ -6,10 +6,8 @@
         { 
             get
             {
-                return @"User ID=SA;
-                         Initial Catalog=Configuracao;
-                         Data Source=.\SQLEXPRESS2019;
-                         Password=Senailab02";
+                //return @"User ID=SA;Initial Catalog=Configuracao;Data Source=.\SQLEXPRESS2019;Password=Senailab02";
+                return @"User ID=Erisvaldo;Initial Catalog=Configuracao;Data Source=.\SQLEXPRESS2019;Password=123";
             }
         }
     }
