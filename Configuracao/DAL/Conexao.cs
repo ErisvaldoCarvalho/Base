@@ -1,13 +1,24 @@
-﻿namespace DAL
+﻿using Models;
+using System;
+using System.IO;
+using System.Runtime.Remoting.Channels;
+
+namespace DAL
 {
     public static class Conexao
     {
-        public static string StringDeConexao 
-        { 
+        public static string StringDeConexao
+        {
             get
             {
-                //return @"User ID=SA;Initial Catalog=Configuracao;Data Source=.\SQLEXPRESS2019;Password=Senailab02";
-                return @"User ID=Erisvaldo;Initial Catalog=Configuracao;Data Source=.\SQLEXPRESS2019;Password=123";
+                if (String.IsNullOrEmpty(Constantes.StringDeConexao))
+                {
+                    if (File.Exists(Constantes.DiretorioStringConexao + Constantes.NomeArquivoConexao))
+                        Constantes.StringDeConexao = File.ReadAllText(Constantes.DiretorioStringConexao + Constantes.NomeArquivoConexao);
+                    else
+                        throw new Exception("É preciso criar a string de conexão") { Data = { { "Id", 1 } } };
+                }
+                return Constantes.StringDeConexao;
             }
         }
     }
