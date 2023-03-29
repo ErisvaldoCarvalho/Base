@@ -79,7 +79,7 @@
             this.usuarioDataGridView.RowHeadersWidth = 51;
             this.usuarioDataGridView.RowTemplate.Height = 24;
             this.usuarioDataGridView.Size = new System.Drawing.Size(935, 497);
-            this.usuarioDataGridView.TabIndex = 6;
+            this.usuarioDataGridView.TabIndex = 8;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -156,7 +156,7 @@
             this.grupoUsuariosDataGridView.RowHeadersWidth = 51;
             this.grupoUsuariosDataGridView.RowTemplate.Height = 24;
             this.grupoUsuariosDataGridView.Size = new System.Drawing.Size(584, 497);
-            this.grupoUsuariosDataGridView.TabIndex = 2;
+            this.grupoUsuariosDataGridView.TabIndex = 9;
             // 
             // dataGridViewTextBoxColumn8
             // 
@@ -176,41 +176,41 @@
             // 
             // buttonBuscar
             // 
-            this.buttonBuscar.Location = new System.Drawing.Point(629, 92);
+            this.buttonBuscar.Location = new System.Drawing.Point(629, 86);
             this.buttonBuscar.Name = "buttonBuscar";
-            this.buttonBuscar.Size = new System.Drawing.Size(75, 23);
+            this.buttonBuscar.Size = new System.Drawing.Size(75, 29);
             this.buttonBuscar.TabIndex = 2;
-            this.buttonBuscar.Text = "Buscar";
+            this.buttonBuscar.Text = "&Buscar";
             this.buttonBuscar.UseVisualStyleBackColor = true;
             this.buttonBuscar.Click += new System.EventHandler(this.buttonBuscar_Click);
             // 
             // buttonAlterar
             // 
-            this.buttonAlterar.Location = new System.Drawing.Point(710, 91);
+            this.buttonAlterar.Location = new System.Drawing.Point(710, 85);
             this.buttonAlterar.Name = "buttonAlterar";
-            this.buttonAlterar.Size = new System.Drawing.Size(75, 23);
+            this.buttonAlterar.Size = new System.Drawing.Size(75, 29);
             this.buttonAlterar.TabIndex = 3;
-            this.buttonAlterar.Text = "Alterar";
+            this.buttonAlterar.Text = "Al&terar";
             this.buttonAlterar.UseVisualStyleBackColor = true;
             this.buttonAlterar.Click += new System.EventHandler(this.buttonAlterar_Click);
             // 
             // buttonAdicionarUsuario
             // 
-            this.buttonAdicionarUsuario.Location = new System.Drawing.Point(791, 91);
+            this.buttonAdicionarUsuario.Location = new System.Drawing.Point(791, 85);
             this.buttonAdicionarUsuario.Name = "buttonAdicionarUsuario";
-            this.buttonAdicionarUsuario.Size = new System.Drawing.Size(75, 23);
+            this.buttonAdicionarUsuario.Size = new System.Drawing.Size(75, 29);
             this.buttonAdicionarUsuario.TabIndex = 4;
-            this.buttonAdicionarUsuario.Text = "Adicionar";
+            this.buttonAdicionarUsuario.Text = "&Adicionar";
             this.buttonAdicionarUsuario.UseVisualStyleBackColor = true;
             this.buttonAdicionarUsuario.Click += new System.EventHandler(this.buttonAdicionarUsuario_Click);
             // 
             // buttonExcluirUsuario
             // 
-            this.buttonExcluirUsuario.Location = new System.Drawing.Point(872, 91);
+            this.buttonExcluirUsuario.Location = new System.Drawing.Point(872, 85);
             this.buttonExcluirUsuario.Name = "buttonExcluirUsuario";
-            this.buttonExcluirUsuario.Size = new System.Drawing.Size(75, 23);
+            this.buttonExcluirUsuario.Size = new System.Drawing.Size(75, 29);
             this.buttonExcluirUsuario.TabIndex = 5;
-            this.buttonExcluirUsuario.Text = "Excluir";
+            this.buttonExcluirUsuario.Text = "&Excluir";
             this.buttonExcluirUsuario.UseVisualStyleBackColor = true;
             this.buttonExcluirUsuario.Click += new System.EventHandler(this.buttonExcluirUsuario_Click);
             // 
@@ -219,8 +219,8 @@
             this.buttonAdicionarGrupoUsuario.Location = new System.Drawing.Point(1381, 91);
             this.buttonAdicionarGrupoUsuario.Name = "buttonAdicionarGrupoUsuario";
             this.buttonAdicionarGrupoUsuario.Size = new System.Drawing.Size(75, 23);
-            this.buttonAdicionarGrupoUsuario.TabIndex = 7;
-            this.buttonAdicionarGrupoUsuario.Text = "Adicionar";
+            this.buttonAdicionarGrupoUsuario.TabIndex = 6;
+            this.buttonAdicionarGrupoUsuario.Text = "A&dicionar";
             this.buttonAdicionarGrupoUsuario.UseVisualStyleBackColor = true;
             this.buttonAdicionarGrupoUsuario.Click += new System.EventHandler(this.buttonAdicionarGrupoUsuario_Click);
             // 
@@ -229,8 +229,8 @@
             this.buttonExcluirGrupoUsuario.Location = new System.Drawing.Point(1462, 91);
             this.buttonExcluirGrupoUsuario.Name = "buttonExcluirGrupoUsuario";
             this.buttonExcluirGrupoUsuario.Size = new System.Drawing.Size(75, 23);
-            this.buttonExcluirGrupoUsuario.TabIndex = 8;
-            this.buttonExcluirGrupoUsuario.Text = "Excluir";
+            this.buttonExcluirGrupoUsuario.TabIndex = 7;
+            this.buttonExcluirGrupoUsuario.Text = "E&xcluir";
             this.buttonExcluirGrupoUsuario.UseVisualStyleBackColor = true;
             this.buttonExcluirGrupoUsuario.Click += new System.EventHandler(this.buttonExcluirGrupoUsuario_Click);
             // 
@@ -258,12 +258,14 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.grupoUsuariosDataGridView);
             this.Controls.Add(this.usuarioDataGridView);
+            this.KeyPreview = true;
             this.MinimizeBox = false;
             this.Name = "FormBuscarUsuario";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gestão de usuários";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormBuscarUsuario_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.usuarioBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.usuarioDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grupoUsuariosBindingSource)).EndInit();

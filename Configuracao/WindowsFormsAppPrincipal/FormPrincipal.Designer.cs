@@ -60,21 +60,23 @@
             // usuáriosToolStripMenuItem
             // 
             this.usuáriosToolStripMenuItem.Name = "usuáriosToolStripMenuItem";
-            this.usuáriosToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.usuáriosToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.U)));
+            this.usuáriosToolStripMenuItem.Size = new System.Drawing.Size(270, 26);
             this.usuáriosToolStripMenuItem.Text = "Usuários";
             this.usuáriosToolStripMenuItem.Click += new System.EventHandler(this.usuáriosToolStripMenuItem_Click);
             // 
             // gruposDeUsuáriosToolStripMenuItem
             // 
             this.gruposDeUsuáriosToolStripMenuItem.Name = "gruposDeUsuáriosToolStripMenuItem";
-            this.gruposDeUsuáriosToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.gruposDeUsuáriosToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.G)));
+            this.gruposDeUsuáriosToolStripMenuItem.Size = new System.Drawing.Size(270, 26);
             this.gruposDeUsuáriosToolStripMenuItem.Text = "Grupos de usuários";
             this.gruposDeUsuáriosToolStripMenuItem.Click += new System.EventHandler(this.gruposDeUsuáriosToolStripMenuItem_Click);
             // 
             // permissõesToolStripMenuItem
             // 
             this.permissõesToolStripMenuItem.Name = "permissõesToolStripMenuItem";
-            this.permissõesToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.permissõesToolStripMenuItem.Size = new System.Drawing.Size(270, 26);
             this.permissõesToolStripMenuItem.Text = "Permissões";
             // 
             // FormPrincipal
@@ -83,11 +85,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(856, 472);
             this.Controls.Add(this.menuStrip1);
+            this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FormPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Módulo configuração";
             this.Load += new System.EventHandler(this.FormPrincipal_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormPrincipal_KeyDown);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
