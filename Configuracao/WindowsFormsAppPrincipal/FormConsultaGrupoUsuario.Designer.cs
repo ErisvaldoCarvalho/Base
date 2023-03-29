@@ -63,6 +63,7 @@
             this.grupoUsuarioDataGridView.RowTemplate.Height = 24;
             this.grupoUsuarioDataGridView.Size = new System.Drawing.Size(776, 313);
             this.grupoUsuarioDataGridView.TabIndex = 4;
+            this.grupoUsuarioDataGridView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.grupoUsuarioDataGridView_MouseDoubleClick);
             // 
             // dataGridViewTextBoxColumn2
             // 

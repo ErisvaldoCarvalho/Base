@@ -58,5 +58,10 @@ namespace WindowsFormsAppPrincipal
             if (e.KeyCode == Keys.Escape)
                 Close();
         }
+
+        private void grupoUsuarioDataGridView_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            buttonSelecionar_Click(null, null);
+        }
     }
 }
