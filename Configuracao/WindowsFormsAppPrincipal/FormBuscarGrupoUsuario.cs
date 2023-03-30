@@ -1,13 +1,6 @@
 ﻿using BLL;
 using Models;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WindowsFormsAppPrincipal
@@ -121,6 +114,29 @@ namespace WindowsFormsAppPrincipal
         {
             if (e.KeyCode == Keys.Escape)
                 Close();
+
+            else if (e.KeyCode == Keys.Down)
+            {
+                if (e.Control)
+                    permissoesBindingSource.MoveNext();
+                else
+                    grupoUsuarioBindingSource.MoveNext();
+
+                e.Handled = true;
+            }
+            else if (e.KeyCode == Keys.Up)
+            {
+                if (e.Control)
+                    permissoesBindingSource.MovePrevious();
+                else
+                    grupoUsuarioBindingSource.MovePrevious();
+                e.Handled = true;
+            }
+        }
+        private void textBoxBuscar_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                buttonBuscar_Click(null, null);
         }
     }
 }

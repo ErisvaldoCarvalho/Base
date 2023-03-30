@@ -15,9 +15,13 @@ namespace WindowsFormsAppPrincipal
     public partial class FormConsultaPermissao : Form
     {
         public int Id;
+        private string ultimaBusca;
+        private bool buscou;
         public FormConsultaPermissao()
         {
             InitializeComponent();
+            ultimaBusca = "";
+            buscou = false;
         }
 
         private void buttonSelecionar_Click(object sender, EventArgs e)
@@ -54,11 +58,35 @@ namespace WindowsFormsAppPrincipal
         {
             if (e.KeyCode == Keys.Escape)
                 Close();
+            else if (e.KeyCode == Keys.Down)
+            {
+                permissaoBindingSource.MoveNext();
+                e.Handled = true;
+            }
+            else if (e.KeyCode == Keys.Up)
+            {
+                permissaoBindingSource.MovePrevious();
+                e.Handled = true;
+            }
         }
 
         private void permissaoDataGridView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             buttonSelecionar_Click(null, null);
+        }
+        private void textBoxBuscar_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (!buscou || ultimaBusca != textBoxBuscar.Text)
+                {
+                    buttonBuscar_Click(null, null);
+                    ultimaBusca = textBoxBuscar.Text;
+                    buscou = true;
+                }
+                else
+                    buttonSelecionar_Click(null, null);
+            }
         }
     }
 }
