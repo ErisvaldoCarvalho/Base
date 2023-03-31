@@ -28,6 +28,9 @@ namespace WindowsFormsAppPrincipal
         {
             try
             {
+                if (usuarioBindingSource.Count == 0)
+                    throw new Exception("Não existe usuário listado para ser excluído.");
+
                 if (usuarioBindingSource.Count <= 0)
                 {
                     MessageBox.Show("Não existe registro para ser excluído.");
@@ -63,6 +66,9 @@ namespace WindowsFormsAppPrincipal
         {
             try
             {
+                if (usuarioBindingSource.Count == 0)
+                    throw new Exception("Não existe usuário listado para ser alterado.");
+
                 int id = ((Usuario)usuarioBindingSource.Current).Id;
 
                 using (FormCadastroUsuario frm = new FormCadastroUsuario(id))
@@ -105,6 +111,9 @@ namespace WindowsFormsAppPrincipal
         {
             try
             {
+                if (grupoUsuariosBindingSource.Count == 0)
+                    throw new Exception("Não existe grupo listado para ser excluído.");
+
                 int idGrupoUsuario = ((GrupoUsuario)grupoUsuariosBindingSource.Current).Id;
                 int idUsuario = ((Usuario)usuarioBindingSource.Current).Id;
                 new UsuarioBLL().RemoverGrupoUsuario(idUsuario, idGrupoUsuario);

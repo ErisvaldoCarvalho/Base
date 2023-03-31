@@ -44,6 +44,9 @@ namespace WindowsFormsAppPrincipal
         {
             try
             {
+                if(grupoUsuarioBindingSource.Count == 0)
+                    throw new Exception("Não existe grupo listado para ser alterado.");
+
                 using (FormCadastroGrupoUsuario frm = new FormCadastroGrupoUsuario(((GrupoUsuario)grupoUsuarioBindingSource.Current).Id))
                 {
                     frm.ShowDialog();
@@ -61,7 +64,7 @@ namespace WindowsFormsAppPrincipal
             try
             {
                 if (grupoUsuarioBindingSource.Count == 0)
-                    return;
+                    throw new Exception("Não existe grupo a ser excluído");
                 if (MessageBox.Show("Deseja realmente excluir este registro?", "Atenção", MessageBoxButtons.YesNo) == DialogResult.No)
                     return;
 
@@ -99,6 +102,9 @@ namespace WindowsFormsAppPrincipal
         {
             try
             {
+                if (permissoesBindingSource.Count == 0)
+                    throw new Exception("Não existe permissão a ser excluída.");
+
                 int idGrupo = ((GrupoUsuario)grupoUsuarioBindingSource.Current).Id;
                 int idPermissao = ((Permissao)permissoesBindingSource.Current).Id;
                 new GrupoUsuarioBLL().RemoverPermissao(idGrupo, idPermissao);

@@ -114,9 +114,9 @@ IF(NOT EXISTS(SELECT 1 FROM Permissao WHERE Id = 9))INSERT INTO Permissao(Id, De
 IF(NOT EXISTS(SELECT 1 FROM Permissao WHERE Id = 10))INSERT INTO Permissao(Id, Descricao)VALUES(10,'Adicionar grupo de usuário a um usuário')
 GO
 
-IF(NOT EXISTS(SELECT 1 FROM Usuario WHERE NomeUsuario = 'Erisvaldo'))INSERT INTO Usuario(Nome, NomeUsuario, Senha, Ativo)VALUES('Erisvaldo Carvalho', 'Erisvaldo', '123456', 1)
-IF(NOT EXISTS(SELECT 1 FROM Usuario WHERE NomeUsuario = 'Geno'))INSERT INTO Usuario(Nome, NomeUsuario, Senha, Ativo)VALUES('Genoveva', 'Geno', '984521', 1)
-IF(NOT EXISTS(SELECT 1 FROM Usuario WHERE NomeUsuario = 'Dag'))INSERT INTO Usuario(Nome, NomeUsuario, Senha, Ativo)VALUES('Dagorlina', 'Dag', '123456', 1)
+IF(NOT EXISTS(SELECT 1 FROM Usuario WHERE NomeUsuario = 'Erisvaldo'))INSERT INTO Usuario(Nome, NomeUsuario, Senha, Ativo)VALUES('Erisvaldo Carvalho', 'Erisvaldo', '123', 1)
+IF(NOT EXISTS(SELECT 1 FROM Usuario WHERE NomeUsuario = 'Geno'))INSERT INTO Usuario(Nome, NomeUsuario, Senha, Ativo)VALUES('Genoveva', 'Geno', '123', 1)
+IF(NOT EXISTS(SELECT 1 FROM Usuario WHERE NomeUsuario = 'Dag'))INSERT INTO Usuario(Nome, NomeUsuario, Senha, Ativo)VALUES('Dagorlina', 'Dag', '123', 1)
 GO
 
 INSERT INTO GrupoUsuario(NomeGrupo)VALUES('Gerente')
@@ -145,18 +145,4 @@ INSERT INTO PermissaoGrupoUsuario (IdGrupoUsuario, IdPermissao)VALUES(2, 2)
 INSERT INTO PermissaoGrupoUsuario (IdGrupoUsuario, IdPermissao)VALUES(2, 3)
 GO
 
-SELECT 
-    f.name AS ForeignKey,
-    OBJECT_NAME(f.parent_object_id) AS TableName,
-    COL_NAME(fc.parent_object_id, fc.parent_column_id) AS ColumnName,
-    OBJECT_NAME(f.referenced_object_id) AS ReferencedTableName,
-    COL_NAME(fc.referenced_object_id, fc.referenced_column_id) AS ReferencedColumnName
-FROM 
-    sys.foreign_keys AS f
-INNER JOIN 
-    sys.foreign_key_columns AS fc ON f.OBJECT_ID = fc.constraint_object_id
-ORDER BY 
-    TableName, ColumnName;
-GO
-SELECT*FROM GrupoUsuario with(nolock)
-SELECT*FROM PermissaoGrupoUsuario with(nolock)
+

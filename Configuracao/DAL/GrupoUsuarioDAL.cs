@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
+using System.Linq.Expressions;
 
 namespace DAL
 {
@@ -175,9 +176,47 @@ namespace DAL
 
             using (SqlConnection cn = new SqlConnection(Conexao.StringDeConexao))
             {
-                using (SqlCommand cmd = new SqlCommand("DELETE FROM GrupoUsuarios WHERE Id = @Id", cn))
+                using (SqlCommand cmd = new SqlCommand("DELETE FROM GrupoUsuarios WHERE id = @id", cn))
                 {
+                    cmd.CommandType = CommandType.Text;
                     cmd.Parameters.AddWithValue("@Id", _idGrupoUsuario);
+                    try
+                    {
+                        if (_transaction == null)
+                        {
+                            cn.Open();
+                            transaction = cn.BeginTransaction();
+                        }
+
+                        cmd.Transaction = transaction;
+                        cmd.Connection = transaction.Connection;
+
+                        RemoverTodasPermissoes(_idGrupoUsuario, transaction);
+                        RemoverTodosUsuarios(_idGrupoUsuario, transaction);
+                        cmd.ExecuteNonQuery();
+
+                        if (_transaction == null)
+                            transaction.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        throw new Exception("Ocorreu um erro ao tentar excluir o grupo de usuário no banco de dados: " + ex.Message);
+                    }
+                }
+            }
+
+        }
+
+        private void RemoverTodosUsuarios(int _idGrupoUsuario, SqlTransaction _transaction)
+        {
+            SqlTransaction transaction = _transaction;
+
+            using (SqlConnection cn = new SqlConnection(Conexao.StringDeConexao))
+            {
+                using (SqlCommand cmd = new SqlCommand("DELETE FROM UsuarioGrupoUsuario WHERE IdGrupoUsuario = @IdGrupoUsuario", cn))
+                {
+                    cmd.Parameters.AddWithValue("@IdGrupoUsuario", _idGrupoUsuario);
 
                     if (transaction == null)
                     {
@@ -189,7 +228,6 @@ namespace DAL
 
                     try
                     {
-                        RemoverTodasPermissoes(_idGrupoUsuario, transaction);
                         cmd.ExecuteNonQuery();
 
                         if (_transaction == null)
@@ -198,11 +236,12 @@ namespace DAL
                     catch (Exception ex)
                     {
                         transaction.Rollback();
-                        throw new Exception("Ocorreu erro ao tentar excluir um grupo de usuário no banco de dados.", ex);
+                        throw new Exception("Ocorreu um erro ao tentar excluir todos os usuários do grupo no banco de dados.", ex) { Data = { { "Id", -1 } } };
                     }
                 }
             }
         }
+
         private void RemoverTodasPermissoes(int _idGrupoUsuario, SqlTransaction _transaction = null)
         {
             SqlTransaction transaction = _transaction;
