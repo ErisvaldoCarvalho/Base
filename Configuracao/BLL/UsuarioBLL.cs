@@ -1,4 +1,5 @@
 ﻿using DAL;
+using Infra;
 using Models;
 using System;
 using System.Collections.Generic;
@@ -13,13 +14,21 @@ namespace BLL
             ValidarPermissao(2);
             ValidarDados(_usuario, _confirmacaoDeSenha);
 
+            _usuario.Senha = new Criptografia().CriptografarSenha(_usuario.Senha);
+
             UsuarioDAL usuarioDAL = new UsuarioDAL();
             usuarioDAL.Inserir(_usuario);
         }
-        public void Alterar(Usuario _usuario, string _confirmacaoDeSenha)
+        public void Alterar(Usuario _usuario, string _confirmacaoDeSenha = "n1Xc09TSv3e2GxqNApdZNbmbrWJbucjNI2p+kvUHLOY=")
         {
             ValidarPermissao(3);
-            ValidarDados(_usuario, _confirmacaoDeSenha);
+            if (_confirmacaoDeSenha != "n1Xc09TSv3e2GxqNApdZNbmbrWJbucjNI2p+kvUHLOY=")
+                ValidarDados(_usuario, _confirmacaoDeSenha);
+            else
+                ValidarDados(_usuario, _usuario.Senha);
+
+            if (_confirmacaoDeSenha != "n1Xc09TSv3e2GxqNApdZNbmbrWJbucjNI2p+kvUHLOY=")
+                _usuario.Senha = new Criptografia().CriptografarSenha(_usuario.Senha);
 
             UsuarioDAL usuarioDAL = new UsuarioDAL();
             usuarioDAL.Alterar(_usuario);
@@ -57,10 +66,10 @@ namespace BLL
         private void ValidarDados(Usuario _usuario, string _confirmacaoDeSenha)
         {
             if (_usuario.Senha != _confirmacaoDeSenha)
-                throw new Exception("A senha e a confirmação da senha devem ser iguais.");
+                throw new Exception("A senha e a confirmação da senha devem ser iguais.") { Data = { { "Id", 1 } } };
 
             if (_usuario.Senha.Length <= 3)
-                throw new Exception("A senha deve ter mais de 3 caracteres.") { Data = { { "Id", 123 } } };
+                throw new Exception("A senha deve ter mais de 3 caracteres.") { Data = { { "Id", 1 } } };
 
             if (_usuario.Nome.Length <= 2)
                 throw new Exception("A nome deve ter mais de 2 caracteres.");
@@ -82,7 +91,7 @@ namespace BLL
         public void Altenticar(string _nomeUsuario, string _senha)
         {
             Usuario usuario = new UsuarioDAL().BuscarPorNomeUsuario(_nomeUsuario);
-            if (_senha == usuario.Senha && usuario.Ativo)
+            if (new Criptografia().CriptografarSenha(_senha) == usuario.Senha && usuario.Ativo)
                 Constantes.IdUsuarioLogado = usuario.Id;
             else
                 throw new Exception("Usuario ou senha inválido.");
