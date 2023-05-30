@@ -16,6 +16,7 @@ namespace WindowsFormsAppPrincipal
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            Infra.Log.Gravar("Usuário abriu o sistema.");
             Application.Run(new FormPrincipal());
         }
     }
