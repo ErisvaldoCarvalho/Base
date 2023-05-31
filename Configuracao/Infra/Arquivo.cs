@@ -23,24 +23,49 @@ namespace Infra
                 throw new Exception("Ocorreu um erro ao tentar gravar linha no final do arquivo", ex) { Data = { { "Id", 3 } } };
             }
         }
-        public string LerArquivo(string _arquivo)
+        public List<string> LerLinhasArquivo(string _caminhoArquivo, bool _criptografado = false)
         {
-            try
-            {
-                if (File.Exists(_arquivo))
-                    return File.ReadAllText(_arquivo);
+            List<string> linhas = new List<string>();
 
-                return null;
-            }
-            catch (Exception ex)
+            using (StreamReader sr = new StreamReader(_caminhoArquivo))
             {
-                throw new Exception("Ocorreu um erro ao tentar ler informações do arquivo", ex) { Data = { { "Id", 3 } } };
+                string linha;
+                while ((linha = sr.ReadLine()) != null)
+                {
+                    if (_criptografado)
+                        linhas.Add(new Criptografia().Descriptografar(linha));
+                    else
+                        linhas.Add(linha);
+                }
             }
+
+            return linhas;
         }
         public void ExcluirArquivo(string _arquivo)
         {
             if (File.Exists(_arquivo))
                 File.Delete(_arquivo);
+        }
+
+        public void GravarBytesNoFinalDoArquivo(string caminhoArquivo, byte[] bytes)
+        {
+            ExcluirArquivo(caminhoArquivo);
+
+            using (FileStream arquivo = new FileStream(caminhoArquivo, FileMode.Append))
+            {
+                if (!File.Exists(caminhoArquivo))
+                {
+                    byte[] novaLinhaBytes = Encoding.UTF8.GetBytes(Environment.NewLine);
+                    arquivo.Write(novaLinhaBytes, 0, novaLinhaBytes.Length);
+                }
+
+                arquivo.Write(bytes, 0, bytes.Length);
+            }
+        }
+
+        internal void GravarLinhaNoFinalDoArquivo(object caminhoArquivoLog, string v)
+        {
+            throw new NotImplementedException();
         }
     }
 }

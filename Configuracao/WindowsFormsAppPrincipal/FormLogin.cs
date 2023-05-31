@@ -19,12 +19,14 @@ namespace WindowsFormsAppPrincipal
         {
             try
             {
+                Log.Gravar("buttonEntrar_Click");
                 new UsuarioBLL().Altenticar(textBoxUsuario.Text, textBoxSenha.Text);
                 Logou = true;
                 Close();
             }
             catch (Exception ex)
             {
+                Log.Gravar(ex.Message);
                 MessageBox.Show(ex.Message);
             }
         }

@@ -90,6 +90,7 @@ namespace BLL
         }
         public void Altenticar(string _nomeUsuario, string _senha)
         {
+            Log.Gravar("Método Altenticar usuário: " + _nomeUsuario);
             Usuario usuario = new UsuarioDAL().BuscarPorNomeUsuario(_nomeUsuario);
             if (new Criptografia().CriptografarSenha(_senha) == usuario.Senha && usuario.Ativo)
                 Constantes.IdUsuarioLogado = usuario.Id;
