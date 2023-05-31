@@ -1,6 +1,5 @@
 ﻿using Infra;
 using System;
-using System.Security.Cryptography;
 using System.Windows.Forms;
 
 namespace WindowsFormsAppPrincipal
@@ -18,15 +17,7 @@ namespace WindowsFormsAppPrincipal
             
             Log.Gravar("Usuário abriu o sistema.");
             
-            Application.Run(new FormExibirLogs());
-        }
-
-        private static void Criptografar()
-        {
-            Criptografia encryptionHelper = new Criptografia();
-            string text = "Hello, world!";
-            string encryptedText = encryptionHelper.Criptografar(text);
-            string decryptedText = encryptionHelper.Descriptografar(encryptedText);
+            Application.Run(new FormLogin());
         }
     }
 }

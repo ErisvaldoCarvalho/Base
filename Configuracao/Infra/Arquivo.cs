@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Infra
 {
@@ -46,7 +44,6 @@ namespace Infra
             if (File.Exists(_arquivo))
                 File.Delete(_arquivo);
         }
-
         public void GravarBytesNoFinalDoArquivo(string caminhoArquivo, byte[] bytes)
         {
             ExcluirArquivo(caminhoArquivo);
@@ -61,11 +58,6 @@ namespace Infra
 
                 arquivo.Write(bytes, 0, bytes.Length);
             }
-        }
-
-        internal void GravarLinhaNoFinalDoArquivo(object caminhoArquivoLog, string v)
-        {
-            throw new NotImplementedException();
         }
     }
 }

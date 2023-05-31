@@ -48,7 +48,6 @@
     <Compile Include="Criptografia.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RSAHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
