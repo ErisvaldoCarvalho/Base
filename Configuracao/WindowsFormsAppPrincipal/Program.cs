@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Infra;
+using System;
+using System.Security.Cryptography;
 using System.Windows.Forms;
 
 namespace WindowsFormsAppPrincipal
@@ -16,8 +15,18 @@ namespace WindowsFormsAppPrincipal
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Infra.Log.Gravar("Usuário abriu o sistema.");
-            Application.Run(new FormPrincipal());
+            
+            Log.Gravar("Usuário abriu o sistema.");
+            
+            Application.Run(new FormExibirLogs());
+        }
+
+        private static void Criptografar()
+        {
+            Criptografia encryptionHelper = new Criptografia();
+            string text = "Hello, world!";
+            string encryptedText = encryptionHelper.Criptografar(text);
+            string decryptedText = encryptionHelper.Descriptografar(encryptedText);
         }
     }
 }
