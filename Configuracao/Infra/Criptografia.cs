@@ -29,6 +29,14 @@ namespace Infra
                 new Arquivo().GravarBytesNoFinalDoArquivo(Constantes.CaminhoChavePrivada, chavePrivadaBytes);
             }
         }
+        public RSAParameters GetPublicKey()
+        {
+            return rsa.ExportParameters(false);
+        }
+        public RSAParameters GetPrivateKey()
+        {
+            return rsa.ExportParameters(true);
+        }
         public string Criptografar(string _texto)
         {
             if (!File.Exists(Constantes.CaminhoChavePublica))
@@ -70,14 +78,6 @@ namespace Infra
             byte[] bytesDescriptografados = rsa.Decrypt(bytesCriptografados, RSAEncryptionPadding.Pkcs1);
 
             return Encoding.UTF8.GetString(bytesDescriptografados);
-        }
-        public RSAParameters GetPublicKey()
-        {
-            return rsa.ExportParameters(false);
-        }
-        public RSAParameters GetPrivateKey()
-        {
-            return rsa.ExportParameters(true);
         }
         public string CriptografarSenha(string _senha)
         {

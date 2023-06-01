@@ -21,6 +21,7 @@ namespace WindowsFormsAppPrincipal
             {
                 Log.Gravar("buttonEntrar_Click");
                 new UsuarioBLL().Altenticar(textBoxUsuario.Text, textBoxSenha.Text);
+                Log.Gravar("O usuário logou no sistema.");
                 Logou = true;
                 Close();
             }

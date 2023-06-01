@@ -11,14 +11,14 @@ namespace Models
         public static string CaminhoChavePublica = "C:\\Configuracao\\ChavePublica.txt";
         public static string CaminhoChavePrivada = "C:\\Configuracao\\ChavePrivada.txt";
         public static string NomeArquivoConexao = "configuracaoConnection.config";
+        public static string DiretorioArquivoLog = Environment.CurrentDirectory + "\\Logs\\";
 
         public static string CaminhoArquivoLog
         {
             get
             {
-                string diretorio = Environment.CurrentDirectory + "\\Logs\\";
-                Directory.CreateDirectory(diretorio);
-                return diretorio + "Log" + DateTime.Now.Date.Year.ToString() + DateTime.Now.Date.Month.ToString("00") + DateTime.Now.Day.ToString("00") + ".log";
+                Directory.CreateDirectory(DiretorioArquivoLog);
+                return DiretorioArquivoLog + "Log" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString("00") + DateTime.Now.Day.ToString("00") + ".log";
             }
         }
     }

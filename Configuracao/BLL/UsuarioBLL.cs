@@ -93,7 +93,10 @@ namespace BLL
             Log.Gravar("Método Altenticar usuário: " + _nomeUsuario);
             Usuario usuario = new UsuarioDAL().BuscarPorNomeUsuario(_nomeUsuario);
             if (new Criptografia().CriptografarSenha(_senha) == usuario.Senha && usuario.Ativo)
+            {
                 Constantes.IdUsuarioLogado = usuario.Id;
+                Log.Gravar("O usuário altenticou como: " + usuario.NomeUsuario);
+            }
             else
                 throw new Exception("Usuario ou senha inválido.");
         }

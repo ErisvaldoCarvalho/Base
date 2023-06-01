@@ -21,6 +21,7 @@ namespace Infra
                 throw new Exception("Ocorreu um erro ao tentar gravar linha no final do arquivo", ex) { Data = { { "Id", 3 } } };
             }
         }
+
         public List<string> LerLinhasArquivo(string _caminhoArquivo, bool _criptografado = false)
         {
             List<string> linhas = new List<string>();
@@ -44,20 +45,33 @@ namespace Infra
             if (File.Exists(_arquivo))
                 File.Delete(_arquivo);
         }
-        public void GravarBytesNoFinalDoArquivo(string caminhoArquivo, byte[] bytes)
+        public void GravarBytesNoFinalDoArquivo(string _caminhoArquivo, byte[] _bytes)
         {
-            ExcluirArquivo(caminhoArquivo);
+            ExcluirArquivo(_caminhoArquivo);
 
-            using (FileStream arquivo = new FileStream(caminhoArquivo, FileMode.Append))
+            using (FileStream arquivo = new FileStream(_caminhoArquivo, FileMode.Append))
             {
-                if (!File.Exists(caminhoArquivo))
+                if (!File.Exists(_caminhoArquivo))
                 {
                     byte[] novaLinhaBytes = Encoding.UTF8.GetBytes(Environment.NewLine);
                     arquivo.Write(novaLinhaBytes, 0, novaLinhaBytes.Length);
                 }
 
-                arquivo.Write(bytes, 0, bytes.Length);
+                arquivo.Write(_bytes, 0, _bytes.Length);
             }
         }
+
+        public string[] ListarArquivos(string _diretorio, string _filtro = "")
+        {
+            try
+            {              
+                return Directory.Exists(_diretorio) ? Directory.GetFiles(_diretorio, _filtro) : new string[0];
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao tentar listar arquivos do diretório", ex) { Data = { { "Id", 5 } } };
+            }
+        }
+
     }
 }
