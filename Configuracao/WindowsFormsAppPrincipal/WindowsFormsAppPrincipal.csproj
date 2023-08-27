@@ -164,6 +164,10 @@
       <Project>{822cf07f-febe-4b4b-b515-36db352e030a}</Project>
       <Name>BLL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ComponentesDesktop\ComponentesDesktop.csproj">
+      <Project>{80F68C22-5E04-4237-9995-56FD5FDE8DB7}</Project>
+      <Name>ComponentesDesktop</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Infra\Infra.csproj">
       <Project>{7188006b-ba3e-4eac-ac0c-c8955520e4b7}</Project>
       <Name>Infra</Name>
