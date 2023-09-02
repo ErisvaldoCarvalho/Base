@@ -1,4 +1,5 @@
 ﻿using Models;
+using System;
 
 namespace BLL
 {
@@ -19,6 +20,11 @@ namespace BLL
         public Cliente BuscarPorNome(string _nome)
         {
             return null;
+        }
+
+        public Produto BuscarPorCodigoDeBarras(string text)
+        {
+            throw new NotImplementedException();
         }
     }
 }

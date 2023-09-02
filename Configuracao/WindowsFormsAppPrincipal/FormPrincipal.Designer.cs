@@ -35,6 +35,8 @@
             this.permissõesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.configuraçõesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exibirLogsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.vendasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pDVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -43,7 +45,8 @@
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cadastroToolStripMenuItem,
-            this.configuraçõesToolStripMenuItem});
+            this.configuraçõesToolStripMenuItem,
+            this.vendasToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
@@ -94,9 +97,24 @@
             // exibirLogsToolStripMenuItem
             // 
             this.exibirLogsToolStripMenuItem.Name = "exibirLogsToolStripMenuItem";
-            this.exibirLogsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exibirLogsToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.exibirLogsToolStripMenuItem.Text = "Exibir logs";
             this.exibirLogsToolStripMenuItem.Click += new System.EventHandler(this.exibirLogsToolStripMenuItem_Click);
+            // 
+            // vendasToolStripMenuItem
+            // 
+            this.vendasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.pDVToolStripMenuItem});
+            this.vendasToolStripMenuItem.Name = "vendasToolStripMenuItem";
+            this.vendasToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
+            this.vendasToolStripMenuItem.Text = "Vendas";
+            // 
+            // pDVToolStripMenuItem
+            // 
+            this.pDVToolStripMenuItem.Name = "pDVToolStripMenuItem";
+            this.pDVToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.pDVToolStripMenuItem.Text = "PDV";
+            this.pDVToolStripMenuItem.Click += new System.EventHandler(this.pDVToolStripMenuItem_Click);
             // 
             // FormPrincipal
             // 
@@ -106,7 +124,7 @@
             this.Controls.Add(this.menuStrip1);
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Módulo configuração";
@@ -128,6 +146,8 @@
         private System.Windows.Forms.ToolStripMenuItem permissõesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem configuraçõesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exibirLogsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem vendasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pDVToolStripMenuItem;
     }
 }
 

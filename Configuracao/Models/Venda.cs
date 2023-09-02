@@ -3,8 +3,16 @@ using System.Collections.Generic;
 
 namespace Models
 {
+    public enum Registro
+    {
+        Novo,
+        Alterado,
+        Excluido,
+        Carregado
+    }
     public class Venda
     {
+        public Registro Registro { get; set; }
         public int Id { get; set; }
         public Cliente Cliente { get; set; }
         public DateTime Data { get; set; }
@@ -15,5 +23,12 @@ namespace Models
         public List<ItemVenda> ItemVendaList { get; set; }
         public bool Faturada { get; set; }
         public DateTime DataCadastro { get; set; }
+        public Venda()
+        {
+            this.Registro = new Registro();
+            this.Registro = Registro.Novo;
+            this.Cliente = new Cliente();
+            this.ItemVendaList = new List<ItemVenda>();
+        }
     }
 }

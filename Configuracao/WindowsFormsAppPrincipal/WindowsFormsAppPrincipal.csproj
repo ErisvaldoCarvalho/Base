@@ -97,6 +97,12 @@
     <Compile Include="FormLogin.Designer.cs">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormPDV.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPDV.Designer.cs">
+      <DependentUpon>FormPDV.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -130,6 +136,9 @@
     <EmbeddedResource Include="FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormPDV.resx">
+      <DependentUpon>FormPDV.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormPrincipal.resx">
       <DependentUpon>FormPrincipal.cs</DependentUpon>
     </EmbeddedResource>
@@ -143,9 +152,22 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Models.Categoria.datasource" />
+    <None Include="Properties\DataSources\Models.Cliente.datasource" />
+    <None Include="Properties\DataSources\Models.Compra.datasource" />
+    <None Include="Properties\DataSources\Models.ContasAPagar.datasource" />
+    <None Include="Properties\DataSources\Models.ContasAReceber.datasource" />
+    <None Include="Properties\DataSources\Models.Fornecedor.datasource" />
     <None Include="Properties\DataSources\Models.GrupoUsuario.datasource" />
+    <None Include="Properties\DataSources\Models.HaverContasAPagar.datasource" />
+    <None Include="Properties\DataSources\Models.HaverContasAReceber.datasource" />
+    <None Include="Properties\DataSources\Models.ItemCompra.datasource" />
+    <None Include="Properties\DataSources\Models.ItemVenda.datasource" />
     <None Include="Properties\DataSources\Models.Permissao.datasource" />
+    <None Include="Properties\DataSources\Models.Produto.datasource" />
+    <None Include="Properties\DataSources\Models.SubGrupo.datasource" />
     <None Include="Properties\DataSources\Models.Usuario.datasource" />
+    <None Include="Properties\DataSources\Models.Venda.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
