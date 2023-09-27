@@ -32,7 +32,9 @@ namespace WindowsFormsAppPrincipal
             }
             catch (Exception ex)
             {
-                if (new TratarErro().GetId(ex) == 1)
+                if (new TratarErro().GetId(ex) == 26)
+                    nomeTextBox.Focus();
+                else if (new TratarErro().GetId(ex) == 25)
                     senhaTextBox.Focus();
 
                 MessageBox.Show(ex.Message);

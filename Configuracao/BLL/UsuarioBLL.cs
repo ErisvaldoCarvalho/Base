@@ -56,8 +56,11 @@ namespace BLL
         }
         private void ValidarDados(Usuario _usuario, string _confirmacaoDeSenha)
         {
+            if (String.IsNullOrEmpty(_usuario.Nome))
+                throw new Exception("Informe o nome do usuário!") { Data = { { "Id", 26 } } };
+
             if (_usuario.Senha != _confirmacaoDeSenha)
-                throw new Exception("A senha e a confirmação da senha devem ser iguais.");
+                throw new Exception("A senha e a confirmação da senha devem ser iguais.") { Data = { { "Id", 25 } } };
 
             if (_usuario.Senha.Length <= 3)
                 throw new Exception("A senha deve ter mais de 3 caracteres.") { Data = { { "Id", 123 } } };
