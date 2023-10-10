@@ -1,4 +1,5 @@
 ﻿using DAL;
+using Infra;
 using Models;
 using System;
 using System.Collections.Generic;
@@ -86,9 +87,15 @@ namespace BLL
         {
             Usuario usuario = new UsuarioDAL().BuscarPorNomeUsuario(_nomeUsuario);
             if (_senha == usuario.Senha && usuario.Ativo)
+            {
+                Logs.Gravar("Usuário logou no sistem");
                 Constantes.IdUsuarioLogado = usuario.Id;
+            }
             else
+            {
+                Logs.Gravar("Usuário ou senha incorreta");
                 throw new Exception("Usuario ou senha inválido.");
+            }
         }
     }
 }

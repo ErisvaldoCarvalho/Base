@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Infra;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,9 +15,11 @@ namespace WindowsFormsAppPrincipal
         [STAThread]
         static void Main()
         {
+            Logs.Gravar("Usuário abriu o sitema.");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FormPrincipal());
+            Logs.Gravar("Usuário fechou o sitema");
         }
     }
 }

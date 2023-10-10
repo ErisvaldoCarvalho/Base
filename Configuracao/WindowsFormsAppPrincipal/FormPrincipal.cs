@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Infra;
+using System;
 using System.Windows.Forms;
 
 namespace WindowsFormsAppPrincipal
@@ -27,6 +28,7 @@ namespace WindowsFormsAppPrincipal
         {
             try
             {
+                Logs.Gravar("O sistema vai chamar a tela de login");
                 using (FormLogin frm = new FormLogin())
                 {
                     frm.ShowDialog();
