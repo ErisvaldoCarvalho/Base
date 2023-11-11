@@ -43,10 +43,14 @@
   <ItemGroup>
     <Compile Include="ClienteDAL.cs" />
     <Compile Include="Conexao.cs" />
+    <Compile Include="DALModelo.cs" />
     <Compile Include="GrupoUsuarioDAL.cs" />
     <Compile Include="PermissaoDAL.cs" />
+    <Compile Include="ProdutoDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Teste.cs" />
     <Compile Include="UsuarioDAL.cs" />
+    <Compile Include="Utils.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Models\Models.csproj">

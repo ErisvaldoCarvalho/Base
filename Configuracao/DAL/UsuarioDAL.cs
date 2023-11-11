@@ -1,4 +1,8 @@
-﻿using Models;
+﻿
+
+
+
+using Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
@@ -10,22 +14,22 @@ namespace DAL
 {
     public class UsuarioDAL
     {
+        private Utils utils;
+
+        public UsuarioDAL()
+        {
+            utils = new Utils(new Usuario());
+        }
         public void Inserir(Usuario _usuario)
         {
             SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
             try
             {
                 SqlCommand cmd = cn.CreateCommand();
-                cmd.CommandText = @"INSERT INTO Usuario(Nome, NomeUsuario, Email, CPF, Ativo, Senha) 
-                                    VALUES(@Nome, @NomeUsuario, @Email, @CPF, @Ativo, @Senha)";
+                cmd.CommandText = utils.ScriptInsert;
                 cmd.CommandType = System.Data.CommandType.Text;
 
-                cmd.Parameters.AddWithValue("@Nome", _usuario.Nome);
-                cmd.Parameters.AddWithValue("@NomeUsuario", _usuario.NomeUsuario);
-                cmd.Parameters.AddWithValue("@Email", _usuario.Email);
-                cmd.Parameters.AddWithValue("@CPF", _usuario.CPF);
-                cmd.Parameters.AddWithValue("@Ativo", _usuario.Ativo);
-                cmd.Parameters.AddWithValue("@Senha", _usuario.Senha);
+                utils.PopularParametros(cmd, _usuario, false);
 
                 cmd.Connection = cn;
                 cn.Open();
@@ -51,7 +55,7 @@ namespace DAL
             {
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = cn;
-                cmd.CommandText = "SELECT Id, Nome, NomeUsuario, Email, CPF, Ativo, Senha FROM Usuario";
+                cmd.CommandText = utils.ScriptSelect;
                 cmd.CommandType = System.Data.CommandType.Text;
 
                 cn.Open();
@@ -60,15 +64,7 @@ namespace DAL
                 {
                     while (rd.Read())
                     {
-                        usuario = new Usuario();
-                        usuario.Id = Convert.ToInt32(rd["Id"]);
-                        usuario.Nome = rd["Nome"].ToString();
-                        usuario.NomeUsuario = rd["NomeUsuario"].ToString();
-                        usuario.Email = rd["Email"].ToString();
-                        usuario.CPF = rd["CPF"].ToString();
-                        usuario.Ativo = Convert.ToBoolean(rd["Ativo"]);
-                        usuario.Senha = rd["Senha"].ToString();
-                        usuario.GrupoUsuarios = new GrupoUsuarioDAL().BuscarPorIdUsuario(usuario.Id);
+                        usuario = PreencherObjeto(rd);
                         usuarios.Add(usuario);
                     }
                 }
@@ -82,6 +78,19 @@ namespace DAL
             {
                 cn.Close();
             }
+        }
+        private static Usuario PreencherObjeto(SqlDataReader _rd)
+        {
+            Usuario usuario = new Usuario();
+            usuario.Id = Convert.ToInt32(_rd["Id"]);
+            usuario.Nome = _rd["Nome"].ToString();
+            usuario.NomeUsuario = _rd["NomeUsuario"].ToString();
+            usuario.Email = _rd["Email"].ToString();
+            usuario.CPF = _rd["CPF"].ToString();
+            usuario.Ativo = Convert.ToBoolean(_rd["Ativo"]);
+            usuario.Senha = _rd["Senha"].ToString();
+            usuario.GrupoUsuarios = new GrupoUsuarioDAL().BuscarPorIdUsuario(usuario.Id);
+            return usuario;
         }
         public Usuario BuscarPorNomeUsuario(string _nomeUsuario)
         {
@@ -99,13 +108,7 @@ namespace DAL
                 {
                     if (rd.Read())
                     {
-                        usuario.Id = Convert.ToInt32(rd["Id"]);
-                        usuario.Nome = rd["Nome"].ToString();
-                        usuario.NomeUsuario = rd["NomeUsuario"].ToString();
-                        usuario.Email = rd["Email"].ToString();
-                        usuario.CPF = rd["CPF"].ToString();
-                        usuario.Ativo = Convert.ToBoolean(rd["Ativo"]);
-                        usuario.Senha = rd["Senha"].ToString();
+                        usuario = PreencherObjeto(rd);
                         usuario.GrupoUsuarios = new GrupoUsuarioDAL().BuscarPorIdUsuario(usuario.Id);
                     }
                 }
@@ -129,8 +132,7 @@ namespace DAL
             {
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = cn;
-                cmd.CommandText = @"SELECT Id, Nome, NomeUsuario, Email, CPF, Ativo, Senha FROM Usuario 
-                                    WHERE Id = @Id";
+                cmd.CommandText = $"{utils.ScriptSelect} WHERE Id = @Id";
                 cmd.CommandType = System.Data.CommandType.Text;
 
                 cmd.Parameters.AddWithValue("@Id", _id);
@@ -140,16 +142,7 @@ namespace DAL
                 using (SqlDataReader rd = cmd.ExecuteReader())
                 {
                     if (rd.Read())
-                    {
-                        usuario.Id = Convert.ToInt32(rd["Id"]);
-                        usuario.Nome = rd["Nome"].ToString();
-                        usuario.NomeUsuario = rd["NomeUsuario"].ToString();
-                        usuario.Email = rd["Email"].ToString();
-                        usuario.CPF = rd["CPF"].ToString();
-                        usuario.Ativo = Convert.ToBoolean(rd["Ativo"]);
-                        usuario.Senha = rd["Senha"].ToString();
-                        usuario.GrupoUsuarios = new GrupoUsuarioDAL().BuscarPorIdUsuario(usuario.Id);
-                    }
+                        usuario = PreencherObjeto(rd);
                 }
                 return usuario;
             }
@@ -177,22 +170,12 @@ namespace DAL
                 using (SqlDataReader rd = cmd.ExecuteReader())
                 {
                     if (rd.Read())
-                    {
-                        usuario.Id = Convert.ToInt32(rd["Id"]);
-                        usuario.Nome = rd["Nome"].ToString();
-                        usuario.NomeUsuario = rd["NomeUsuario"].ToString();
-                        usuario.Email = rd["Email"].ToString();
-                        usuario.CPF = rd["CPF"].ToString();
-                        usuario.Ativo = Convert.ToBoolean(rd["Ativo"].ToString());
-                        usuario.Senha = rd["Senha"].ToString();
-                        usuario.GrupoUsuarios = new GrupoUsuarioDAL().BuscarPorIdUsuario(usuario.Id);
-                    }
+                        usuario = PreencherObjeto(rd);
                 }
                 return usuario;
             }
             catch (Exception ex)
             {
-
                 throw new Exception("ocorreu um erro ao tentar buscar id do usuário do banco de dados", ex);
             }
             finally
@@ -217,14 +200,7 @@ namespace DAL
                 {
                     while (rd.Read())
                     {
-                        usuario.Id = Convert.ToInt32(rd["Id"]);
-                        usuario.Nome = rd["Nome"].ToString();
-                        usuario.NomeUsuario = rd["NomeUsuario"].ToString();
-                        usuario.Email = rd["Email"].ToString();
-                        usuario.CPF = rd["CPF"].ToString();
-                        usuario.Ativo = Convert.ToBoolean(rd["Ativo"]);
-                        usuario.Senha = rd["Senha"].ToString();
-                        usuario.GrupoUsuarios = new GrupoUsuarioDAL().BuscarPorIdUsuario(usuario.Id);
+                        usuario = PreencherObjeto(rd);
                         usuarios.Add(usuario);
                     }
                 }
@@ -246,18 +222,10 @@ namespace DAL
             try
             {
                 SqlCommand cmd = cn.CreateCommand();
-                cmd.CommandText = @"UPDATE Usuario SET Nome = @Nome, NomeUsuario = @NomeUsuario, 
-                                    Email = @Email, CPF = @CPF, Ativo = @Ativo, Senha = @Senha 
-                                    WHERE Id = @Id";
+                cmd.CommandText = utils.ScriptUpdate;
                 cmd.CommandType = System.Data.CommandType.Text;
 
-                cmd.Parameters.AddWithValue("@Nome", _usuario.Nome);
-                cmd.Parameters.AddWithValue("@NomeUsuario", _usuario.NomeUsuario);
-                cmd.Parameters.AddWithValue("@Email", _usuario.Email);
-                cmd.Parameters.AddWithValue("@CPF", _usuario.CPF);
-                cmd.Parameters.AddWithValue("@Ativo", _usuario.Ativo);
-                cmd.Parameters.AddWithValue("@Senha", _usuario.Senha);
-                cmd.Parameters.AddWithValue("@Id", _usuario.Id);
+                utils.PopularParametros(cmd, _usuario);
 
                 cmd.Connection = cn;
                 cn.Open();
@@ -279,7 +247,7 @@ namespace DAL
 
             using (SqlConnection cn = new SqlConnection(Conexao.StringDeConexao))
             {
-                using (SqlCommand cmd = new SqlCommand("DELETE FROM Usuario WHERE Id = @Id", cn))
+                using (SqlCommand cmd = new SqlCommand(utils.ScriptDelete, cn))
                 {
                     try
                     {
@@ -309,7 +277,6 @@ namespace DAL
                 }
             }
         }
-
         private void RemoverTodosGrupos(int _id, SqlTransaction _transaction = null)
         {
             SqlTransaction transaction = _transaction;
@@ -345,7 +312,6 @@ namespace DAL
                 }
             }
         }
-
         public bool ValidarPermissao(int _idUsuario, int _idPermissao)
         {
             SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
@@ -379,7 +345,6 @@ namespace DAL
                 cn.Close();
             }
         }
-
         public void AdicionarGrupoUsuario(int _idUsuario, int _idGrupoUsuario)
         {
             SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
@@ -392,7 +357,7 @@ namespace DAL
 
                 cmd.Parameters.AddWithValue("@IdUsuario", _idUsuario);
                 cmd.Parameters.AddWithValue("@IdGrupoUsuario", _idGrupoUsuario);
-  
+
                 cmd.Connection = cn;
                 cn.Open();
 
@@ -407,7 +372,6 @@ namespace DAL
                 cn.Close();
             }
         }
-
         public bool UsuarioPertenceAoGrupo(int _idUsuario, int _idGrupoUsuario)
         {
             SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
@@ -440,7 +404,6 @@ namespace DAL
                 cn.Close();
             }
         }
-
         public void RemoverGrupoUsuario(int _idUsuario, int _idGrupoUsuario)
         {
             SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);

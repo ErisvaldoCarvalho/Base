@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Models
 {
+    [Description("usuário")]
     public class Usuario
     {
         public int Id { get; set; }

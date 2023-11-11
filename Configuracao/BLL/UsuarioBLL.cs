@@ -3,7 +3,6 @@ using Infra;
 using Models;
 using System;
 using System.Collections.Generic;
-using System.Runtime.Remoting.Channels;
 
 namespace BLL
 {
@@ -14,26 +13,28 @@ namespace BLL
             ValidarPermissao(2);
             ValidarDados(_usuario, _confirmacaoDeSenha);
 
-            UsuarioDAL usuarioDAL = new UsuarioDAL();
-            usuarioDAL.Inserir(_usuario);
+            //UsuarioDAL usuarioDAL = new UsuarioDAL();
+            //usuarioDAL.Inserir(_usuario);
+            new DAL2.UsuarioDAL().Salvar(_usuario);
         }
         public void Alterar(Usuario _usuario, string _confirmacaoDeSenha)
         {
             ValidarPermissao(3);
             ValidarDados(_usuario, _confirmacaoDeSenha);
 
-            UsuarioDAL usuarioDAL = new UsuarioDAL();
-            usuarioDAL.Alterar(_usuario);
+            //UsuarioDAL usuarioDAL = new UsuarioDAL();
+            //usuarioDAL.Alterar(_usuario);
+            new DAL2.UsuarioDAL().Salvar(_usuario);
         }
         public void Excluir(int _id)
         {
             ValidarPermissao(4);
-            new UsuarioDAL().Excluir(_id);
+            new DAL2.UsuarioDAL().Excluir(_id);
         }
         public List<Usuario> BuscarTodos()
         {
             ValidarPermissao(1);
-            return new UsuarioDAL().BuscarTodos();
+            return new DAL2.UsuarioDAL().BuscarTodos();
         }
         public Usuario BuscarPorId(int _id)
         {

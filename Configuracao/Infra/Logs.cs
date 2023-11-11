@@ -11,7 +11,7 @@ namespace Infra
             else
                 GravarNoArquivo(_texto);
 
-            if (_ex.InnerException != null)
+            if (_ex != null && _ex.InnerException != null)
                 GravarException(_ex.InnerException);
         }
         private static void GravarException(Exception _ex)
